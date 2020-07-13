@@ -7,13 +7,12 @@ export default class Pawn extends Piece {
   }
 
   getAvailableMoves(board) {
-
-
-     if (this.player === Player.WHITE) {
-       return new Array({ row: 1, col: 0 });
-     }
-     if (this.player === Player.BLACK) {
-      return new Array({ row:6, col:7 });
+    const currentLocation = board.findPiece(this);
+    if (this.player === Player.WHITE) {
+      currentLocation.row++;
+    } else {
+      currentLocation.row--;
     }
+    return new Array(currentLocation);
   }
 }
