@@ -10,23 +10,77 @@ export default class Bishop extends Piece {
     const currentLocation = board.findPiece(this);
     const availableBishopMoves = [];
 
-    const highlightedLocation = Square.at(
+    let highlightedLocation = Square.at(
       currentLocation.row,
       currentLocation.col
     );
+
     while (true) {
       highlightedLocation.row++;
       highlightedLocation.col--;
 
-
       if (squareLocationExists(highlightedLocation)) {
-        const copyLocation = Square.at(highlightedLocation.row,highlightedLocation.col);
+        const copyLocation = Square.at(
+          highlightedLocation.row,
+          highlightedLocation.col
+        );
         availableBishopMoves.push(copyLocation);
       } else {
         break;
       }
-    
     }
+
+    highlightedLocation = Square.at(currentLocation.row, currentLocation.col);
+
+    while (true) {
+      highlightedLocation.row++;
+      highlightedLocation.col++;
+
+      if (squareLocationExists(highlightedLocation)) {
+        const copyLocation = Square.at(
+          highlightedLocation.row,
+          highlightedLocation.col
+        );
+        availableBishopMoves.push(copyLocation);
+      } else {
+        break;
+      }
+    }
+
+    highlightedLocation = Square.at(currentLocation.row, currentLocation.col);
+
+    while (true) {
+      highlightedLocation.row--;
+      highlightedLocation.col--;
+
+      if (squareLocationExists(highlightedLocation)) {
+        const copyLocation = Square.at(
+          highlightedLocation.row,
+          highlightedLocation.col
+        );
+        availableBishopMoves.push(copyLocation);
+      } else {
+        break;
+      }
+    }
+
+    highlightedLocation = Square.at(currentLocation.row, currentLocation.col);
+
+    while (true) {
+      highlightedLocation.row--;
+      highlightedLocation.col++;
+
+      if (squareLocationExists(highlightedLocation)) {
+        const copyLocation = Square.at(
+          highlightedLocation.row,
+          highlightedLocation.col
+        );
+        availableBishopMoves.push(copyLocation);
+      } else {
+        break;
+      }
+    }
+
     console.log(availableBishopMoves);
     return availableBishopMoves;
   }
@@ -43,20 +97,3 @@ function squareLocationExists(square) {
     return false;
   }
 }
-
-/*
-1.  get location square
-2. Potential moves = 
-initailise array - avaialble moves
- a)forward left: 
-    increment  row, decrement the col
-    check if this potential move still exists ,if not existing the stop the loop.
-    push potential square in to the array each time we iterate
-    
- b)forward right
- c)backward left
-d)backward right
-
-*/
-// put all four sections in to one and return.
-//logic for same sqaure.
